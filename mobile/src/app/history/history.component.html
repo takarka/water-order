@@ -1,0 +1,34 @@
+<ActionBar class="action-bar">
+  <Label class="action-bar-title" text="История заказов"></Label>
+</ActionBar>
+<!-- Trnsactions -->
+<GridLayout rows="*">
+  <StackLayout row="2">
+    <ListView
+      [items]="orders"
+      separatorColor="transparent"
+      [itemTemplateSelector]="templateSelector"
+      (itemTap)="onItemTap($event)"
+      class="transactions-list"
+    >
+      <ng-template nsTemplateKey="header" let-item="item">
+        <Label class="transactions-list-header" [text]="item.orderDate" textWrap="true"></Label>
+      </ng-template>
+
+      <ng-template nsTemplateKey="item" let-item="item">
+        <GridLayout columns="auto, *, auto" class="transactions-list-item">
+          <StackLayout col="1" verticalAlignment="center">
+            <Label [text]="getProductName(item)" class="title"></Label>
+            <Label [text]="getProductQuantity(item) + ' шт.'" class="category"></Label>
+          </StackLayout>
+
+          <Label col="2" horizontal="right" class="ammount">
+            <FormattedString>
+              <Span [text]="getProductTotalPrice(item) + ' KZT'"></Span>
+            </FormattedString>
+          </Label>
+        </GridLayout>
+      </ng-template>
+    </ListView>
+  </StackLayout>
+</GridLayout>

@@ -1,0 +1,42 @@
+<ScrollView orientation="vertical" alignItems="center">
+  <StackLayout>
+    <Image margin="100px" src="~/images/water.png" height="400px"> </Image>
+    <StackLayout margin="100px">
+      <GridLayout rows="auto, auto">
+        <RadDataForm row="0" [source]="loginForm" #login>
+          <TKEntityProperty tkDataFormProperty name="email" displayName="Email" index="1">
+            <TKNonEmptyValidator
+              tkEntityPropertyValidators
+              errorMessage="Email не может быть пустым"
+            ></TKNonEmptyValidator>
+            <TKPropertyEditor tkEntityPropertyEditor type="Email"></TKPropertyEditor>
+          </TKEntityProperty>
+          <TKEntityProperty tkDataFormProperty name="password" displayName="Пароль" index="2" >
+            <TKNonEmptyValidator
+              tkEntityPropertyValidators
+              errorMessage="Пароль не может быть пустым"
+            ></TKNonEmptyValidator>
+            <TKPropertyEditor tkEntityPropertyEditor type="Password" (returnPress)="onSubmit()"></TKPropertyEditor>
+          </TKEntityProperty>
+        </RadDataForm>
+        <ActivityIndicator rowSpan="2" [busy]="processing"></ActivityIndicator>
+      </GridLayout>
+      <Button text="Войти" [isEnabled]="!processing" (tap)="onSubmit()" class="btn btn-primary m-t-20"></Button>
+      <Button
+        text="Регистрация"
+        [isEnabled]="!processing"
+        [nsRouterLink]="['/registration']"
+        class="btn btn-primary m-t-20"
+      ></Button>
+    </StackLayout>
+    <StackLayout margin="50px">
+      <button
+        type="button"
+        [isEnabled]="!processing"
+        text="Войти через Google"
+        class="btn btn-primary m-t-20"
+        (tap)="onGoogle()"
+      ></button>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>

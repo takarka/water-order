@@ -1,0 +1,62 @@
+<ActionBar title="Заказ" class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical" alignItems="center">
+  <StackLayout class="form-row">
+    <StackLayout class="form-row">
+      <GridLayout rows="auto" columns="*, *, 60">
+        <Label text="Товар"></Label>
+        <Label col="1" text="Колличество"></Label>
+        <Label col="2" text="Всего"></Label>
+      </GridLayout>
+      <ListView [items]="basket.details" class="list-group">
+        <ng-template let-detail="item" let-i="index" let-odd="odd" let-even="even">
+          <GridLayout rows="auto" columns="*, *, 60">
+            <Label [text]="detail.product.name"></Label>
+            <Label col="1" [text]="detail.quantity"></Label>
+            <Label col="2" [text]="detail.totalPrice"></Label>
+          </GridLayout>
+        </ng-template>
+      </ListView>
+      <GridLayout rows="auto" columns="*, *, 60">
+        <Label col="1" text="Всего:"></Label>
+        <Label col="2" [text]="basket.totalPrice"></Label>
+      </GridLayout>
+    </StackLayout>
+    <StackLayout class="form-row">
+      <RadDataForm [source]="orderA" #basketFrom>
+        <TKEntityProperty tkDataFormProperty name="date" displayName="Дата" index="1">
+          <TKNonEmptyValidator
+            tkEntityPropertyValidators
+            errorMessage="Дата не может быть пустой"
+          ></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="DatePicker" locale="ru-RU"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="time" displayName="Время" index="2" [valuesProvider]="times">
+          <TKNonEmptyValidator
+            tkEntityPropertyValidators
+            errorMessage="Время не может быть пустым"
+          ></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Picker"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty
+          tkDataFormProperty
+          name="address"
+          displayName="Адрес доставки"
+          index="3"
+          [valuesProvider]="adderesses"
+        >
+          <TKNonEmptyValidator
+            tkEntityPropertyValidators
+            errorMessage="Адрес не может быть пустым, добавьте адрес в профиле"
+          ></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Picker"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="comment" displayName="Комментарии" index="4">
+          <TKPropertyEditor tkEntityPropertyEditor type="MultilineText"></TKPropertyEditor>
+        </TKEntityProperty>
+      </RadDataForm>
+    </StackLayout>
+    <Button text="Разместить заказ" (tap)="order()" width="50%"></Button>
+  </StackLayout>
+</ScrollView>

@@ -1,0 +1,12 @@
+.message {
+    font-weight: bold;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 0px;
+}
+
+div.info {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 12pt;
+}

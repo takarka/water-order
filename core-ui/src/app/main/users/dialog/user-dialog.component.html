@@ -1,0 +1,30 @@
+<div mat-dialog-container fxLayout="column" fxLayoutAlign="space-between stretch" fxFill>
+    <simple-dialog-title [dialogRef]="dialogRef" class="simple-dialog-title" [title]="title | translate: { item: 'GENERAL.FIELD.BANK_ACCOUNT' | translate }"
+        mat-dialog-draggable-title></simple-dialog-title>
+    <mat-dialog-content [formGroup]="form" fxLayout="column" style="flex-grow: 1;" fxLayoutAlign="start stretch" class="mat-dialog-content-scroll-show">
+        <mat-form-field>
+            <input class="w-95-p" name="name" #name formControlName="name" placeholder="{{ 'GENERAL.FIELD.NAME' | translate }}" matInput required>
+        </mat-form-field>
+        <mat-form-field>
+            <input name="iban" formControlName="iban" required placeholder="{{ 'BANK_ACCOUNT.TITLE.IBAN' | translate }}" matInput>
+        </mat-form-field>
+        <mat-form-field>
+            <input name="integrationCode" formControlName="integrationCode" required placeholder="{{ 'GENERAL.FIELD.INTEGRATED_CODE' | translate }}"
+                matInput>
+        </mat-form-field>
+        <mat-slide-toggle formControlName="active">{{ 'GENERAL.FIELD.ACTIVE' | translate }}</mat-slide-toggle>
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="center end">
+        <div fxLayoutAlign="start stretch" fxLayoutGap="10px">
+            <button mat-button mat-raised-button color="accent" (click)="save()" class="save-button mat-accent "
+                [disabled]="form.invalid">
+                {{ 'GENERAL.BUTTON.SAVE' | translate }}
+            </button>
+        </div>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="10px">
+            <button mat-raised-button (click)="close()">
+                {{ 'GENERAL.BUTTON.CLOSE' | translate }}
+            </button>
+        </div>
+    </mat-dialog-actions>
+</div>

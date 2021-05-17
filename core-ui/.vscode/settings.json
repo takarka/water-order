@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/src/main/docker": true,
+        "**/src/main/java": true,
+        "**/src/main/resources": true,
+        "**/target": true,
+        "**/.classpath": true,
+        "**/pom.xml": true,
+        "**/gateway.*": true,
+        "**/.settings": true,
+        "**/mvn*": true,
+        "**/.project": true,
+        "**/.factorypath": true
+    },
+    "workbench.colorTheme": "Polymer Syntax Theme"
+}

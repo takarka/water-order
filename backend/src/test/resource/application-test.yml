@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: test
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: basqar-service-test
+      uri: 'mongodb://localhost:27017/basqar-service-test?replicaSet=mersys'
+      mapping-base-package: io.mersys.basqar
+server:
+  port: 10344

@@ -1,0 +1,14 @@
+<ActionBar class="action-bar">
+        <Label class="action-bar-title" text="Главная"></Label>
+    </ActionBar>
+<FlexboxLayout flexDirection="column" alignItems="center">
+        <Image src="~/images/water.png" height="40%"> </Image>
+        <Label [text]="currentProduct.name" class="h1 text-center" textWrap="true"></Label>
+        <Label [text]="currentProduct.description" class="text-center" textWrap="true"></Label>
+        <TextField class="input" hint="1" keyboardType="number" [(ngModel)]='amount' width="40%"></TextField>
+        <StackLayout orientation="horizontal">
+                <Button text="+" (tap)="increaseAmount()"></Button>
+                <Button text="-" (tap)="decreaseAmount()"></Button>
+        </StackLayout>
+        <Button text="Заказать" (tap)="order()" width="50%"></Button>
+</FlexboxLayout> 

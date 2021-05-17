@@ -1,0 +1,19 @@
+
+<mat-toolbar class="mat-primary m-0" style="cursor: move;">
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="title dialog-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            {{title}}</span>
+        <span class="mat-spacer"></span>
+        <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<!--
+<div mat-dialog-title>
+    <h2 class="mat-dialog-title-margin">
+        <strong>{{title}}</strong>
+    </h2>
+    <div class="mat-dialog-title-line"></div>
+</div>
+-->

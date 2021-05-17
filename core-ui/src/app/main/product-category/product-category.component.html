@@ -1,0 +1,131 @@
+<mat-card fxLayout="column" fxLayoutGap="8px" class="example-container" fxFlexFill>
+  <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutAlign="flex-end" fxLayoutGap="8px" class="search-container">
+    <mat-form-field class="control-full-margin">
+      <input matInput [(ngModel)]="searchDTO.name" placeholder="Наименование" (keydown.enter)="doSearch()" />
+    </mat-form-field>
+    <!-- <mat-form-field class="control-full-margin">
+            <input matInput [(ngModel)]="searchDTO.phone" placeholder="Телефон" (keydown.enter)="doSearch()">
+        </mat-form-field>
+        <mat-form-field class="control-full-margin">
+            <input matInput [(ngModel)]="searchDTO.orderStatus" placeholder="Статус" (keydown.enter)="doSearch()">
+        </mat-form-field> -->
+    <div
+      class="control-full"
+      style="padding-top: 16px; margin-bottom: 16px;"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <button mat-raised-button color="accent" (click)="doSearch()">
+        <mat-icon>search</mat-icon>
+        <span>Поиск</span>
+      </button>
+    </div>
+  </div>
+  <!-- Table -->
+  <mat-card class="example-full-width full-size example-container-grid mat-elevation-z8 example-table">
+    <table mat-table [dataSource]="dataSource" class="example-table" matSort>
+      <!-- No. Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No</th>
+        <td mat-cell *matCellDef="let row; let i = index">{{ paginator.pageSize * paginator.pageIndex + i + 1 }}</td>
+      </ng-container>
+      <!-- Order Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Наименование</th>
+        <td mat-cell *matCellDef="let row">{{ row.name ? row.name : '' }}</td>
+      </ng-container>
+      <!--
+      Country Column
+      <ng-container matColumnDef="estimateDeliveryTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Время доставки</th>
+        <td mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>
+          {{ row.estimateDeliveryTime ? (row.estimateDeliveryTime | date: 'yyyy-MM-dd hh:mm') : '' }}
+        </td>
+      </ng-container> -->
+      <!-- City Column -->
+      <!-- <ng-container matColumnDef="deliveryAddress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Адрес доставки</th>
+        <td mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>{{ getDeliveryAddress(row.deliveryAddress) }}</td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Номер телефона</th>
+        <td mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>{{ row.phone ? row.phone : '' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="totalQuantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Количество</th>
+        <td mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>{{ row.totalQuantity ? row.totalQuantity : '' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Сумма</th>
+        <td mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>{{ row.totalPrice ? row.totalPrice : '' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Статус</th>
+        <td mat-cell *matCellDef="let row" fxHide fxShow.gt-xs>{{ row.status ? row.status : '' }}</td>
+      </ng-container> -->
+      <!-- Buttons & Toolbar-->
+      <ng-container matColumnDef="buttons">
+        <!-- Buttons -->
+        <td
+          mat-cell
+          *matCellDef="let row"
+          style="display: table-cell; padding-right: 4px;"
+          (click)="$event.stopPropagation()"
+        >
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <div fxHide fxShow.gt-sm>
+              <button
+                mat-button
+                color="warn"
+                confirm
+                confirm_title="Вы уверены что хотите удалить заказ ?"
+                confirm_message="Вы хотите удалить {{ row.name }} ?"
+                (confirm_yes_event)="delete(row.id)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span>Удалить</span>
+              </button>
+            </div>
+            <div>
+              <!-- Menu with Icons-->
+              <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+              <mat-menu #menu="matMenu">
+                <button fxShow fxHide.gt-sm mat-menu-item color="accent" [routerLink]="['/school/info/', row.id]">
+                  <mat-icon>edit</mat-icon>
+                  <span translate>GENERAL.BUTTON.EDIT</span>
+                </button>
+                <button
+                  fxShow
+                  fxHide.gt-sm
+                  mat-menu-item
+                  color="warn"
+                  confirm
+                  confirm_title="Вы уверены что хотите удалить заказ ?"
+                  confirm_message="Вы хотите удалить этот заказ с номером {{ row.ordeNumber }} ?"
+                  (confirm_yes_event)="delete(row.id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Удалить</span>
+                </button>
+                <!-- <mat-divider fxShow fxHide.gt-sm></mat-divider>
+                                <button mat-menu-item [routerLink]="['/academic-periods', row.id]">
+                                    <mat-icon>calendar_today</mat-icon>
+                                    <span translate>GENERAL.FIELD.ACADEMIC_PERIOD</span>
+                                </button> -->
+              </mat-menu>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 25, 50, 100, 250]"
+      [length]="resultsLength"
+      [pageSize]="10"
+      class="mat-paginator-sticky"
+    ></mat-paginator>
+  </mat-card>
+</mat-card>

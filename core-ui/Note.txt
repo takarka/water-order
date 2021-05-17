@@ -1,0 +1,29 @@
+Angular best practices
+
+1. Container Components (Services Providers, Pipes, Directives etc.): 
+These components know how to retrieve data from the service layer. 
+Note that the top-level component of a route is usually a Container 
+Component, and that is why this type of components where originally named like that
+2. Presentational Components (UI components) :
+These components simply take data as input and know how to display it on the screen. 
+They also can emit custom events
+
+3. changeDetection: ChangeDetectionStrategy.OnPush
+
+// TOP FIXED (TOOLBAR OR BUTOON BAR)
+{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    border-sizing:border-box;
+}
+
+
+ng serve --proxy-config proxy.conf.json --hmr --configuration=hmr
+
+https://github.com/wizardnet972/hmr-cli
+
+https://medium.com/wizardnet972/hot-module-replacement-with-angular-cli-5fc7a3ae4a9c
+
+https://github.com/angular/angular-cli/wiki/stories-configure-hmr

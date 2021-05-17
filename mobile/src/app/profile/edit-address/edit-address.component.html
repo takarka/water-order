@@ -1,0 +1,53 @@
+<ActionBar title="Редактировать Адрес" class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical" alignItems="center">
+  <StackLayout class="form-row">
+    <StackLayout class="form-row">
+      <RadDataForm [source]="addressForm" #address>
+        <TKEntityProperty tkDataFormProperty name="name" displayName="Имя" index="1">
+          <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Имя не может быть пустым"></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="city" displayName="Город" index="2" [valuesProvider]="cities">
+          <TKNonEmptyValidator
+            tkEntityPropertyValidators
+            errorMessage="Город не может быть пустым"
+          ></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Picker"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="region" displayName="Регион" index="3" [valuesProvider]="regions">
+          <TKNonEmptyValidator
+            tkEntityPropertyValidators
+            errorMessage="Регион не может быть пустым"
+          ></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Picker"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="street" displayName="Улица" index="4">
+          <TKNonEmptyValidator
+            tkEntityPropertyValidators
+            errorMessage="Улица не может быть пустой"
+          ></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="buildingNumber" displayName="Дом" index="5">
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="flatNumber" displayName="Квартира" index="6">
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="entranceCode" displayName="Код домофона" index="7">
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="floor" displayName="Этаж" index="8">
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+      </RadDataForm>
+    </StackLayout>
+    <StackLayout class="form-row">
+      <Button text="Сохранить" (tap)="doSave()" class="btn-primary"></Button>
+      <Button text="Удалить" *ngIf="id" (tap)="doDelete()" class="bg-danger"></Button>
+      <Button text="Отмена" (tap)="goBack()"></Button>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>

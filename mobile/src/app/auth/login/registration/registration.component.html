@@ -1,0 +1,45 @@
+<ActionBar title="Регистрация" class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical" alignItems="center">
+  <StackLayout class="form-row">
+    <StackLayout class="form-row">
+      <RadDataForm [source]="registrationData" #registration (propertyValidate)="onPropertyValidate($event)">
+        <TKEntityProperty tkDataFormProperty name="name" displayName="Имя" index="1">
+          <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Имя не может быть пустым"></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="phone" displayName="Телефон" index="2">
+          <TKPhoneValidator tkEntityPropertyValidators errorMessage="Телефон должен быть корректным"></TKPhoneValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Phone"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="email" displayName="Email" index="3">
+          <TKEmailValidator tkEntityPropertyValidators errorMessage="Email должен быть корректным"></TKEmailValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Email"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="password" displayName="Пароль" index="4">
+          <TKMinimumLengthValidator
+            tkEntityPropertyValidators
+            errorMessage="Пароль должен быть как минимум 6 символов"
+            length="6"
+          >
+          </TKMinimumLengthValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="passwordVerify" displayName="Повторить пароль" index="5">
+          <TKMinimumLengthValidator
+            tkEntityPropertyValidators
+            errorMessage="Пароль должен быть как минимум 6 символов"
+            length="6"
+          >
+          </TKMinimumLengthValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
+        </TKEntityProperty>
+      </RadDataForm>
+    </StackLayout>
+    <StackLayout class="form-row">
+      <Button text="Зарегистрироваться" (tap)="register()" class="btn-primary"></Button>
+      <Button text="Отмена" (tap)="goBack()"></Button>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>

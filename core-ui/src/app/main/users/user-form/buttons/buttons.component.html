@@ -1,0 +1,42 @@
+<button-bar class="toolbar" [mobilButtons]="mobilButtons" [normalButtons]="normalButtons" [dangerButtons]="dangerButtons">
+</button-bar>
+
+<ng-template #mobilButtons>
+
+    <mat-menu #menu="matMenu" yPosition="above">
+        <button mat-menu-item color="primary" (click)="doSave($event)">
+            <mat-icon>save</mat-icon>
+            <span translate>GENERAL.BUTTON.SAVE</span>
+        </button>
+        <button mat-menu-item color="primary" confirm [confirm_title]="'GENERAL.TITLE.CONFIRM_DIALOG' | translate"
+            [confirm_message]="'GENERAL.MESSAGE.CONFIRM.DELETE' | translate"
+            (confirm_yes_event)="doDelete($event)">
+            <mat-icon>delete</mat-icon>
+            <span translate>GENERAL.BUTTON.DELETE</span>
+        </button>
+    </mat-menu>
+    <button fxShow fxHide.gt-sm mat-fab color="primary" class="bottom-speed-dial" [matMenuTriggerFor]="menu">
+        <mat-icon class="spin180">more_vert</mat-icon>
+    </button>
+
+</ng-template>
+
+<ng-template #normalButtons>
+    <button mat-raised-button (click)="doNew($event)">
+        <mat-icon>add</mat-icon>
+        <span translate>GENERAL.BUTTON.NEW</span>
+    </button>
+    <button mat-raised-button color="accent" (click)="doSave($event)">
+        <mat-icon>save</mat-icon>
+        <span translate>GENERAL.BUTTON.SAVE</span>
+    </button>
+</ng-template>
+
+<ng-template #dangerButtons>
+    <button mat-raised-button color="warn" confirm [confirm_title]="'GENERAL.TITLE.CONFIRM_DIALOG' | translate"
+        [confirm_message]="'GENERAL.MESSAGE.CONFIRM.DELETE' | translate"
+        (confirm_yes_event)="doDelete($event)" [disabled]="state != 'edit'">
+        <mat-icon>delete</mat-icon>
+        <span translate>GENERAL.BUTTON.DELETE</span>
+    </button>
+</ng-template>

@@ -1,0 +1,15 @@
+<TabView androidTabsPosition="bottom" selectedIndex="1"
+        selectedTabTextColor="blue" 
+        selectedTabHighlightColor="grey"
+        tabBackgroundColor="white"
+        (selectedIndexChanged)="onSelectedIndexChanged($event)"
+        >
+  <page-router-outlet *tabItem="{ title: 'Профиль', iconSource: 'res://ic_account_circle' }" name="profileTab">
+  </page-router-outlet>
+
+  <page-router-outlet *tabItem="{ title: 'Главная', iconSource: 'res://ic_home' }" name="homeTab">
+  </page-router-outlet>
+
+  <page-router-outlet *tabItem="{ title: 'Заказы', iconSource: 'res://ic_calendar_today' }" name="historyTab">
+  </page-router-outlet>
+</TabView>

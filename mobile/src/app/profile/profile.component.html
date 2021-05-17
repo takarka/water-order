@@ -1,0 +1,25 @@
+<ActionBar class="action-bar">
+  <Label class="action-bar-title" text="Профиль"></Label>
+</ActionBar>
+<ScrollView orientation="vertical" alignItems="center">
+  <StackLayout>
+    <StackLayout class="form-row">
+      <Image margin="10%" [src]="profile.imageUrl ? profile.imageUrl : ''" height="30%"></Image>
+      <Label [text]="profile.name"></Label>
+      <Label [text]="profile.phone"></Label>
+      <Label [text]="profile.email"></Label>
+    </StackLayout>
+    <Button text="Редактировать" class="btn btn-primary" (tap)="editProfile()"></Button>
+    <Button text="Выйти" class="btn bg-danger" (tap)="logout()"></Button>
+    <hr>
+    <Label text="Мои адреса" class="h1 text-center" textWrap="true"></Label>
+    <StackLayout *ngFor="let address of addresses" class="form-row">
+      <GridLayout rows="*" columns="*, *, *">
+        <Label [text]="address.name" style="margin-top: 30px"></Label>
+        <Label col="1" [text]="address.street" style="margin-top: 30px"></Label>
+        <Button col="2" text="Редактировать" class="btn" (tap)="editAddress(address.id)"></Button>
+      </GridLayout>
+    </StackLayout>
+    <Button text="Добавить новый адрес?" class="btn btn-primary" (tap)="addAddress()"></Button>
+  </StackLayout>
+</ScrollView>

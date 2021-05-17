@@ -1,0 +1,35 @@
+<div mat-dialog-container fxLayout="column" fxLayoutAlign="space-between stretch" fxFill>
+    <simple-dialog-title [dialogRef]="dialogRef" class="simple-dialog-title" title="Временной интервал"
+        mat-dialog-draggable-title></simple-dialog-title>
+    <mat-dialog-content [formGroup]="form" fxLayout="column" style="flex-grow: 1;" fxLayoutAlign="start stretch" class="mat-dialog-content-scroll-show">
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap.gt-sm="8px" fxLayoutAlign="space-around stretch">
+            <mat-form-field class="control-full-margin">
+                <input matInput placeholder="Начальное время" [ngxTimepicker]="fullTime" [format]="24" formControlName="start"
+                    readonly required>
+                <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+            </mat-form-field>
+            <mat-form-field class="control-full-margin">
+                <input matInput placeholder="Время окончания" [ngxTimepicker]="fulTime" [format]="24" formControlName="end"
+                    readonly required>
+                <ngx-material-timepicker #fulTime></ngx-material-timepicker>
+            </mat-form-field>
+        </div>
+        <mat-form-field class="w-100-p" style="margin-top: 20px">
+            <input name="order" type="number" min="0" pattern="^\d+$" formControlName="order" placeholder="Приоритет"
+                matInput required />
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayout="row" fxLayoutAlign="center end">
+        <div fxLayoutAlign="start stretch" fxLayoutGap="10px">
+            <button mat-button mat-raised-button color="accent" (click)="save()" class="save-button mat-accent "
+                [disabled]="form.invalid">
+                Сохранить
+            </button>
+        </div>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxLayoutGap="10px">
+            <button mat-raised-button (click)="close()">
+                Закрыть
+            </button>
+        </div>
+    </mat-dialog-actions>
+</div>

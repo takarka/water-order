@@ -1,0 +1,336 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// -----------------------------------------------------------------------------------------------------
+// @ Multiple material themes example
+// -----------------------------------------------------------------------------------------------------
+
+// Define the Material palettes
+$yellow-theme-primary: mat-palette($mat-fusedark);
+$yellow-theme-accent: mat-palette($mat-yellow, 600, 400, 700);
+$yellow-theme-warn: mat-palette($mat-red);
+
+// Create the Material theme object
+$yellow-theme: mat-light-theme($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+
+// Add ".yellow-theme" class to the body to activate this theme
+.yellow-theme {
+
+    // Generate the Angular Material theme
+    @include angular-material-theme($yellow-theme);
+
+    // Generate the fuse color classes with the new colors...
+    @include generateFuseColorClasses($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+}
+
+.cdk-global-scrollblock {
+    position: fixed;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.mat-checkbox-layout {
+    white-space: normal !important;
+}
+
+.mat-pseudo-checkbox {
+    padding: 8px;
+}
+
+.mat-dialog-title {
+    padding: 0 !important;
+    margin: -12px 0 8px 0 !important;
+    /*border-bottom: 0.4px solid lightgray;*/
+}
+
+.mat-dialog-title-margin {
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.mat-dialog-title-line {
+    border-top: 1px solid #d3d3d352;
+    width: calc(100% + 48px);
+    margin-left: -24px;
+    margin-right: -100px;
+    margin-bottom: 12px;
+}
+
+.mat-dialog-content-scroll-show {
+    overflow: auto !important;
+    max-width: none !important;
+}
+
+.mat-dialog-content {
+    max-height: 75vh !important;
+}
+
+.mat-dialog-actionbar {
+    align-items: flex-end;
+    flex-direction: row;
+    display: flex;
+    place-content: flex-end;
+    width: 100%;
+}
+
+.mat-dialog-actions {
+    padding: 20px 0 !important;
+}
+
+a:hover {
+    cursor: auto;
+}
+
+//CUSTOM CSS
+///////////////////////////////////////
+.form {
+    min-width: 150px;
+    width: 100%;
+    height: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.button-bar {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.header {
+    padding: 0px !important;
+    width: 100%;
+}
+
+.full-size {
+    width: 100%;
+    height: 100%;
+}
+
+.control-full-margin {
+    width: 100%;
+}
+
+.control-right-align {
+    text-align: right;
+}
+
+.divider {
+    position: unset !important;
+    margin-bottom: 16px !important;
+    border-top-width: 1px !important;
+    background-color: black;
+}
+
+.form-subtitle {
+    color: grey;
+    // background: rgba(0,0,0,.03);
+    align-content: center;
+    align-items: center;
+    display: flex;
+    //padding: 0px 2px 0px;
+    margin-bottom: 16px !important;
+    margin-top: 0px !important;
+}
+
+.mat-row:hover,
+.mat-list-item-content:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.mat-row:active {
+    background: #efefef;
+}
+
+.mat-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-tree-node {
+    min-height: 40px !important;
+    height: 40px !important;
+}
+
+.danger {
+    background: #d32f2f;
+    color: #fff;
+}
+
+.success {
+    background: #43a047;
+    color: #fff;
+}
+
+.info {
+    /*background: #007bff;*/
+    background: #1976d2;
+    color: #fff;
+}
+
+.warning {
+    background: #ffa000;
+    color: #fff;
+}
+
+tr.mat-footer-row,
+tr.mat-row {
+    cursor: pointer;
+}
+
+.bottom-speed-dial {
+    position: absolute !important;
+    bottom: 16px;
+    right: 16px;
+}
+
+.simple-dialog-title {
+    margin-left: -24px;
+    margin-top: -24px;
+    margin-right: -24px;
+    margin-bottom: 8px;
+    /*height: 80px;*/
+}
+
+/**DISABLE STEPPER HEADER CLICK**/
+.mat-horizontal-stepper-header {
+    pointer-events: none !important;
+}
+
+.mat-vertical-stepper-header {
+    pointer-events: none !important;
+}
+
+/**START CUSTOM CSS OF PRE-REGISTRATION FORM STEPPER**/
+@media (max-width: 599px) {
+
+    .mat-horizontal-stepper-header .mat-step-icon,
+    .mat-horizontal-stepper-header .mat-step-icon-not-touched {
+        margin-right: 0 !important;
+    }
+
+    .mat-step-label {
+        display: none !important;
+    }
+
+}
+
+
+
+/*
+@media (min-width: 600px) {
+    .mat-stepper-horizontal {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .mat-horizontal-stepper-header {
+        flex-direction: column;
+        flex: 1;
+        height: 104px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .mat-horizontal-stepper-header .mat-step-icon,
+    .mat-horizontal-stepper-header .mat-step-icon-not-touched {
+        margin-top: 24px;
+        margin-right: 0 !important;
+    }
+
+    .mat-step-label {
+        margin-top: 16px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mat-step-text-label {
+        text-align: center;
+    }
+
+    .mat-stepper-horizontal-line {
+        margin-top: -32px !important;
+        max-width: 32px;
+    }
+}
+*/
+.mat-horizontal-stepper-header-container {
+    padding-bottom: 40px !important;
+}
+
+@media (max-width: 599px) {
+    .mat-step-label {
+        display: block !important;
+    }
+}
+
+.active.accent {
+    background-color: #039be5 !important;
+}
+
+.mat-list .mat-list-item .mat-list-item-content {
+    padding: 0px !important;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 16px 16px !important;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-orange {
+    background-color: #FF5722;
+    color: white;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-purple {
+    background-color: #9C27B0;
+    color: white;
+}
+
+/**END CUSTOM CSS OF PRE-REGISTRATION FORM STEPPER**/
+
+/** STATUS COLORS **/
+.color-red {
+    color: #F44336
+}
+
+.color-green {
+    color: #388E3C
+}
+
+.color-grey {
+    color: #D3D3D3
+}
+
+.mat-list .mat-list-item {
+    height: 60px !important;
+}
+
+.mat-form-field-suffix .mat-icon {
+    font-size: 100%;
+    line-height: 1.125;
+}
+
+//when you want to fill mat tab with full mat group height
+.mat-tab-group.mat-tab-fill-height .mat-tab-body-wrapper {
+    flex: 1 1 100%;
+}
+
+.nav-link {
+    height: 44px !important;
+}
+
+tr.mat-footer-row,
+tr.mat-row {
+    height: 44px !important;
+}
+
+.mat-menu-item {
+    line-height: 44px !important;
+    height: 44px !important;
+}

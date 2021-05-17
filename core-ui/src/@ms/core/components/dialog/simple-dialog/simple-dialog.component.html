@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>
+  <strong>{{ title }}</strong>
+</h2>
+<!--
+<div class="mat-dialog-title-line"></div>
+-->
+<mat-dialog-content>
+  <div *ngIf="information !== ''">
+    <p>{{ information }}</p>
+  </div>
+  <div *ngIf="subinformation !== ''">
+    <pre style="padding-right: 2em;">{{ subinformation }}</pre>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div fxLayout="row" fxLayoutAlign="end end" class="mat-dialog-actionbar">
+    <div *ngIf="button == 0">
+      <button type="submit" mat-button mat-raised-button color="accent" (click)="onOk()" tabindex="-1">
+        {{ 'GENERAL.BUTTON.YES' | translate }}
+      </button>
+    </div>
+    <div *ngIf="button == 1">
+      <button type="submit" mat-button mat-raised-button color="accent" (click)="onOk()" tabindex="-1">
+        {{ 'GENERAL.BUTTON.YES' | translate }}
+      </button>
+      <button mat-button mat-raised-button (click)="onCancel()" style="margin-left: 20px" tabindex="-1">
+        {{ 'GENERAL.BUTTON.CANCEL' | translate }}
+      </button>
+    </div>
+    <div *ngIf="button == 2">
+      <button type="submit" mat-button mat-raised-button color="accent" (click)="onYes()" tabindex="-1">
+        {{ 'GENERAL.BUTTON.YES' | translate }}
+      </button>
+      <button mat-button mat-raised-button mat-dialog-close style="margin-left: 20px" (click)="onNo()" tabindex="-1">
+        {{ 'GENERAL.BUTTON.NO' | translate }}
+      </button>
+    </div>
+    <div *ngIf="button == 3">
+      <button type="submit" mat-button mat-raised-button color="accent" (click)="onAccept()" tabindex="-1">
+        Accept
+      </button>
+      <button mat-button mat-raised-button (click)="onReject()" style="margin-left: 20px" tabindex="-1">Reject</button>
+    </div>
+    <div *ngIf="button == 4">
+      <button type="submit" mat-button mat-raised-button color="accent" (click)="onYes()" tabindex="-1">
+        {{ 'GENERAL.BUTTON.YES' | translate }}
+      </button>
+      <button mat-button mat-raised-button mat-dialog-close (click)="onNo()" tabindex="-1">
+        {{ 'GENERAL.BUTTON.NO' | translate }}
+      </button>
+      <button mat-button mat-raised-button (click)="onCancel()" style="margin-left: 20px" tabindex="-1">
+        {{ 'GENERAL.BUTTON.CANCEL' | translate }}
+      </button>
+    </div>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,39 @@
+<ActionBar title="Ваш заказ" class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView class="page page-content detail-modal-content">
+  <GridLayout rows="auto, auto, auto">
+    <GridLayout row="0" height="200" rows="24, auto, *">
+      <StackLayout row="1" rowSpan="2" class="detail-modal-info">
+        <Label [text]="getProductTotalPrice()" class="ammount"></Label>
+
+        <Label [text]="getProductName()" [class]="'category communication'"></Label>
+
+        <!-- <StackLayout orientation="horizontal" [class]="'status ' + transactionData.status">
+          <Label *ngIf="transactionData.status === 'completed'" text="&#xee76;" class="icon"></Label>
+          <Label *ngIf="transactionData.status === 'pending'" text="&#xee79;" class="icon"></Label>
+          <Label [text]="'detail.status.' + transactionData.status | translate" class="p-r-10"></Label>
+        </StackLayout> -->
+        <Label [text]="getProductQuantity() + ' x ' + getProductPrice()" class="name"></Label>
+        <!-- <Label [text]="getdDeliveryAddress()" class="address"></Label>
+        <Label [text]="getOrderDate()" class="status-date"></Label> -->
+      </StackLayout>
+
+      <!-- <StackLayout margin="5" row="0" rowSpan="2" [class]="'detail-modal-badge communication'">
+                    <Label text="\uea1c" class="icon"></Label>
+                </StackLayout> -->
+    </GridLayout>
+
+    <StackLayout row="1" class="detail-company">
+      <Label [text]="'Дата/Время доставки: '" class="address"></Label>
+      <Label [text]="getOrderDate()" class="fieldValue" style="padding-bottom: 10"></Label>
+      <Label [text]="'Адрес доставки: '" class="address"></Label>
+      <Label [text]="getdDeliveryAddress()" class="fieldValue" style="padding-bottom: 10"></Label>
+    </StackLayout>
+    
+
+    <StackLayout row="2" class="detail-company-map">
+        <Button class="btn btn-primary" (tap)="repeatOrder()" text="Повторить заказ"></Button>
+    </StackLayout>
+  </GridLayout>
+</ScrollView>

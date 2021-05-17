@@ -1,0 +1,34 @@
+<button-bar class="toolbar" [mobilButtons]="mobilButtons" [normalButtons]="normalButtons" [dangerButtons]="dangerButtons">
+</button-bar>
+
+<ng-template #mobilButtons>
+    <mat-menu #menu="matMenu" yPosition="above">
+        <button mat-menu-item (click)="doApprove($event)" [disabled]="!isSelected">
+            <mat-icon>check</mat-icon>
+            <span>Одобрить</span>
+        </button>
+        <button mat-menu-item color="primary" [disabled]="!isSelected" confirm confirm_message="Вы уверены, что хотите отменить выбранные заказы?"
+            (confirm_yes_event)="doCancel($event)">
+            <mat-icon>cancel</mat-icon>
+            <span>Отменить</span>
+        </button>
+    </mat-menu>
+    <button fxShow fxHide.gt-sm mat-fab color="primary" class="bottom-speed-dial" [matMenuTriggerFor]="menu">
+        <mat-icon class="spin180">more_vert</mat-icon>
+    </button>
+</ng-template>
+
+<ng-template #normalButtons>
+    <button mat-raised-button color="accent" (click)="doApprove($event)" [disabled]="!itemCreatedSelected">
+        <mat-icon>check</mat-icon>
+        <span>Одобрить</span>
+    </button>
+</ng-template>
+
+<ng-template #dangerButtons>
+    <button mat-raised-button color="warn" confirm confirm_message="Вы уверены, что хотите отменить выбранные заказы?"
+        (confirm_yes_event)="doCancel($event)" [disabled]="!(itemApprovedSelected)">
+        <mat-icon>cancel</mat-icon>
+        <span>Отменить</span>
+    </button>
+</ng-template>

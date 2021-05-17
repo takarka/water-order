@@ -1,0 +1,168 @@
+<mat-card fxLayout="column" fxFill [formGroup]="userForm" fxLayoutGap="8px">
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px">
+        <mat-form-field class="w-100-p">
+            <input style="width: 93%" matInput placeholder="{{ 'GENERAL.FIELD.NAME' | translate }}" #name formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'GENERAL.FIELD.EMAIL' | translate }}" #email formControlName="email">
+        </mat-form-field>
+    </div>
+    <!-- <h3 class="form-subtitle">
+        <strong>{{ 'SCHOOL.TITLE.CONTACT_INFO' | translate }}</strong>
+    </h3> -->
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px">
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'GENERAL.FIELD.PHONE' | translate }}" formControlName="phone">
+        </mat-form-field>
+        <!-- <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.EMAIL' | translate }}" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.WEBSITE' | translate }}" formControlName="phone">
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.FAX' | translate }}" formControlName="email">
+        </mat-form-field> -->
+    </div>
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px">
+        <div class="w-100-p">
+            <mat-slide-toggle formControlName="active">{{ 'GENERAL.FIELD.ACTIVE' | translate }}</mat-slide-toggle>
+        </div>
+        <mat-select formControlName="roles" placeholder="{{ 'GENERAL.FIELD.DEFAULT_LANGUAGE' | translate }}" required multiple>
+            <mat-option *ngFor="let key of roleKeys"
+                [value]="key">
+                {{ RoleEnum[key] }}
+                <!-- {{ role | enum: 'LANGUAGE_TYPE'}} -->
+            </mat-option>
+        </mat-select>
+    </div>
+</mat-card>
+<!-- <mat-card fxLayout="column" fxFill [formGroup]="schoolForm" fxLayoutGap="8px">
+
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px">
+        <mat-form-field class="w-100-p">
+            <input style="width: 93%" matInput placeholder="{{ 'GENERAL.FIELD.NAME' | translate }}" #name formControlName="name" required>
+            <ms-translation style="width: 7%" [control]="name" fieldName="School Name" [fieldValue]="school.name"
+                [fieldTranslations]="school.translateName" (update)="onSaveNameTranslations($event)"></ms-translation>
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'GENERAL.FIELD.SHORTNAME' | translate }}" #shortname formControlName="shortName">
+        </mat-form-field>
+    </div>
+
+    <h3 class="form-subtitle">
+        <strong>{{ 'SCHOOL.TITLE.CONTACT_INFO' | translate }}</strong>
+    </h3>
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px" formGroupName="contactInfo">
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.WORK_PHONE' | translate }}" formControlName="phone">
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.EMAIL' | translate }}" formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.WEBSITE' | translate }}" formControlName="web">
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.FAX' | translate }}" formControlName="fax">
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px">
+        <mat-form-field class="w-100-p">
+            <mat-select placeholder="{{ 'SCHOOL.TITLE.PHONE_MASK' | translate }}" formControlName="phoneMask" required>
+                <mat-option *ngFor="let c of phoneMask" [value]="c.id">
+                    {{ c.type }} ( {{ c.sample }} )
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <mat-select placeholder="{{ 'SCHOOL.TITLE.DEFAULT_CURRENCY' | translate }}" required formControlName="currency">
+                <mat-option *ngFor="let currency of currencies" [value]="currency">
+                    {{ currency | enum: 'CURRENCY_TYPE'}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100-p" [formGroup]="schoolForm">
+            <mat-select placeholder="{{ 'SCHOOL.TITLE.DEFAULT_TIME_ZONE' | translate }}" formControlName="timeZone" required>
+                <mat-option>{{ 'GENERAL.FIELD.NONE' | translate }}</mat-option>
+                <mat-option *ngFor="let tz of timeZones" [value]="tz.name">
+                    {{ tz.offset }} - {{ tz.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100-p" [formGroup]="schoolForm">
+            <mat-select formControlName="language" placeholder="{{ 'GENERAL.FIELD.DEFAULT_LANGUAGE' | translate }}" required>
+                <mat-option *ngFor="let language of languages"
+                    [value]="language">
+                    {{ language | enum: 'LANGUAGE_TYPE'}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px">
+        <div class="w-100-p">
+            <mat-slide-toggle formControlName="active">{{ 'GENERAL.FIELD.ACTIVE' | translate }}</mat-slide-toggle>
+        </div>
+    </div>
+    <h3 class="form-subtitle" style="padding-top: 24px">
+        <strong>{{ 'SCHOOL.TITLE.ADDRESS_INFO' | translate }}</strong>
+    </h3>
+    <mat-form-field class="w-100-p" formGroupName="address">
+        <textarea matInput placeholder="{{ 'SCHOOL.TITLE.STREET' | translate }}" rows="1" formControlName="street"></textarea>
+        <ms-clear control="address.street" [form]="schoolForm"></ms-clear>
+    </mat-form-field>
+    <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px" formGroupName="address">
+        <mat-form-field class="w-100-p" formGroupName="country">
+            <mat-select #country placeholder="{{ 'GENERAL.FIELD.COUNTRY' | translate }}" style="width: calc(100% - 24px);" formControlName="id"
+                (selectionChange)="onCountryChange()" required>
+                <mat-option *ngFor="let c of countries" [value]="c.id">
+                    {{c.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100-p" formGroupName="city">
+            <mat-select placeholder="{{ 'GENERAL.FIELD.CITY' | translate }}" formControlName="id">
+                <mat-option>{{ 'GENERAL.FIELD.NONE' | translate }}</mat-option>
+                <mat-option *ngFor="let c of cities" [value]="c.id">
+                    {{c.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="w-100-p">
+            <input matInput placeholder="{{ 'SCHOOL.TITLE.POSTAL_CODE' | translate }}" formControlName="postalCode">
+        </mat-form-field>
+    </div>
+    <mat-expansion-panel [expanded]="mailServerSettingsExpanded" #mailServerSettingsPanel hideToggle=true>
+        <mat-expansion-panel-header style="padding-left: 16px">
+            <mat-panel-title><strong>{{ 'SCHOOL.TITLE.MAIL_SERVER_SETTINGS' | translate }}</strong></mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px" formGroupName="mailServer" style="margin-bottom: 16px;">
+            <mat-slide-toggle formControlName="enabled" class="w-100-p" #mailServerSettingsToggle>{{ 'SCHOOL.TITLE.ENABLE' | translate }}</mat-slide-toggle>
+            <mat-slide-toggle formControlName="smtpAuth" class="w-100-p">{{ 'SCHOOL.TITLE.SMTP_AUTH' | translate }}</mat-slide-toggle>
+            <mat-slide-toggle formControlName="startTlsEnabled" class="w-100-p">{{ 'SCHOOL.TITLE.TLS_ENABLED' | translate }}</mat-slide-toggle>
+            <mat-slide-toggle formControlName="startTlsRequired" class="w-100-p">{{ 'SCHOOL.TITLE.TLS_REQUIRED' | translate }}</mat-slide-toggle>
+        </div>
+        <div fxLayout.gt-md="row" fxLayout.lt-md="column" fxLayoutGap="8px" formGroupName="mailServer">
+            <div fxLayout="row" class="w-100-p" fxLayoutAlign="space-around center">
+                <mat-form-field fxFlex>
+                    <input matInput placeholder="{{ 'SCHOOL.TITLE.HOST' | translate }}" formControlName="host" required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" class="w-100-p" fxLayoutAlign="space-around center">
+                <mat-form-field fxFlex>
+                    <input matInput type="number" placeholder="{{ 'SCHOOL.TITLE.PORT' | translate }}" formControlName="port" required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" class="w-100-p" fxLayoutAlign="space-around center">
+                <mat-form-field fxFlex>
+                    <input matInput placeholder="{{ 'SCHOOL.TITLE.USERNAME' | translate }}" formControlName="username" required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" class="w-100-p" fxLayoutAlign="space-around center">
+                <mat-form-field fxFlex>
+                    <input matInput type="password" placeholder="{{ 'SCHOOL.TITLE.PASSWORD' | translate }}" formControlName="password" required>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-card> -->

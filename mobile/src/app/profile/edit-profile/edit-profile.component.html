@@ -1,0 +1,23 @@
+<ActionBar title="Редактировать Профиль" class="action-bar">
+  <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical" alignItems="center">
+  <StackLayout class="form-row">
+    <StackLayout class="form-row">
+      <RadDataForm [source]="profileData" #profile>
+        <TKEntityProperty tkDataFormProperty name="name" displayName="Имя" index="1">
+          <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Имя не может быть пустым"></TKNonEmptyValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
+        </TKEntityProperty>
+        <TKEntityProperty tkDataFormProperty name="phone" displayName="Телефон" index="2">
+          <TKPhoneValidator tkEntityPropertyValidators errorMessage="Телефон должен быть корректным"></TKPhoneValidator>
+          <TKPropertyEditor tkEntityPropertyEditor type="Phone"></TKPropertyEditor>
+        </TKEntityProperty>             
+      </RadDataForm>
+    </StackLayout>
+    <StackLayout class="form-row">
+      <Button text="Сохранить" (tap)="doEditProfile()" class="btn-primary"></Button>
+      <Button text="Отмена" (tap)="goBack()"></Button>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>

@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+            "name": "Launch Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:9000/#",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true,
+            "userDataDir": "${workspaceFolder}/.vscode/chrome",
+            "runtimeArgs": [
+                "--disable-session-crashed-bubble"
+            ]
+        },
+        {
+            "name": "Attach Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "url": "http://localhost:9000/#",
+            "webRoot": "${workspaceFolder}",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Chrome (Test)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:9876/debug.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Launch Chrome (E2E)",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/node_modules/protractor/bin/protractor",
+            "protocol": "inspector",
+            "args": ["${workspaceFolder}/protractor.conf.js"]
+        }
+    ]
+}
